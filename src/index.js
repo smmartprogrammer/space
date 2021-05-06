@@ -5,15 +5,20 @@ import {
 	ApolloProvider,
 	InMemoryCache,
 	ApolloClient,
-} from 'apollo/Client';
+} from '@apollo/Client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const client = new ApolloClient({
+	uri: 'https://spacexdata.herokuapp.com/graphql',
+	cache: new InMemoryCache(),
+});
+
 ReactDOM.render(
-	<React.StrictMode>
+	<ApolloProvider client={client}>
 		<App />
-	</React.StrictMode>,
+	</ApolloProvider>,
 	document.getElementById('root')
 );
 
